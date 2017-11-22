@@ -8,21 +8,21 @@ use App\Core\Router;
  * --------------------------------
  */
 
-require __DIR__.'/../config/app.config.php';
+require __DIR__ . '/../config/app.config.php';
+
+/**
+ * ----------------------------------------------------------------------------
+ * Require the autoload file from the boot directory to launch the application.
+ * ----------------------------------------------------------------------------
+ */
+require __DIR__ . '/../boot/autoload.php';
 
 /**
  * -------------------------
  * Require the routes files.
  * -------------------------
  */
-require __DIR__.'/../routes/routes.php';
-
-/**
- * -----------------------------------------------------------------------------------------------
- * Require the router to catch any routes and redirect to the corresponding controller and method.
- * -----------------------------------------------------------------------------------------------
- */
-require __DIR__.'/../app/Core/Router.php';
+require __DIR__ . '/../routes/routes.php';
 
 /**
  * ------------------
@@ -31,10 +31,3 @@ require __DIR__.'/../app/Core/Router.php';
  */
 $router = new Router();
 $router->resolve($_SERVER['REQUEST_URI']);
-
-/**
- * ----------------------------------------------------------------------------
- * Require the autoload file from the boot directory to launch the application.
- * ----------------------------------------------------------------------------
- */
-require __DIR__.'/../boot/autoload.php';

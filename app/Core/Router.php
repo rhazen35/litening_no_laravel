@@ -64,12 +64,9 @@ class Router
      */
     function request($route, $params)
     {
-        // Include the controller interface and the base controller
-        include 'Contracts/ControllerInterface.php';
-        include 'Controller.php';
-
         // Create the dynamic file name
-        $fileName = '../app/Controllers/' . $route['controller'] . '.php';
+        $fileName = rootDir() . DIRECTORY_SEPARATOR . "app" . DIRECTORY_SEPARATOR . "Controllers"
+            . $route['controller'] . '.php';
 
         // Check if the file exists
         if (file_exists($fileName)) {
