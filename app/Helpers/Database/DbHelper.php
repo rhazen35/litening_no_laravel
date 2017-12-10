@@ -2,6 +2,10 @@
 
 namespace App\Helpers\Database;
 
+/**
+ * Trait DbHelper
+ * @package App\Helpers\Database
+ */
 trait DbHelper
 {
     /**
@@ -42,5 +46,27 @@ trait DbHelper
         }
         // Return false on default.
         return false;
+    }
+
+    /**
+     * @return bool|PDO
+     */
+    function canConnect()
+    {
+        try {
+            // Create a new pdo connection without a database.
+            $pdo = new PDO(
+                'mysql:host=' . $this->dbCredentials['DB_HOST'] . ';',
+                $this->dbCredentials['DB_USERNAME'],
+                $this->dbCredentials['DB_PASSWORD']
+            );
+
+            // Return pdo if the connection succeeded.
+            return $pdo;
+        } catch(PDOException $e) {
+
+            // Return false if the connection failed.
+            return false;
+        }
     }
 }
