@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Core\View;
+
 /**
  * Class Router
  * @package App\Core
@@ -17,10 +19,10 @@ class Router
         if (isset($request)) {
 
             // Clean the request by trimming whitespace and filter sanitize the url(request)
-            $cleanRequest = filter_var(rtrim($request, '/'), FILTER_SANITIZE_URL);
+            $cleanRequest = filter_var(ltrim(str_replace("/" . appName(), "", $request), "/"), FILTER_SANITIZE_URL);
 
             // Split the url into parts
-            $requestParts = explode("/", str_replace(publicDir(), "", $cleanRequest));
+            $requestParts = explode("/", $cleanRequest);
 
             // Get the controller and method from the request parts
             $controller = isset($requestParts[0]) ? $requestParts[0] : null;
@@ -31,7 +33,9 @@ class Router
             unset($requestParts[1]);
 
             // Set the route name
-            $routeName = implode("/", [$controller, $method]);
+            $routeName = strlen($controller) == 0 ? "/" : implode("/", [$controller, $method]);
+
+            var_dump($controller, $method, $routeName);
 
             // Set matching route to null
             $matchingRoute = null;
@@ -48,8 +52,7 @@ class Router
             if (null !== $matchingRoute) {
                 $this->request($matchingRoute, $requestParts);
             } else {
-
-                //TODO: Error Response message
+                $this->request(['controller' => 'errorController', 'method' => '404'], ['type' => "route", 'data' => $requestParts]);
             }
 
         } else {
@@ -73,32 +76,31 @@ class Router
 
             // Include the dynamic controller
             include $fileName;
-        } else {
 
-            //TODO: Error Response message
-        }
+            // Set the dynamic controller namespace and instantiate the dynamic controller
+            $controller =  "\\App\\Controllers\\" . $route['controller'];
 
-        // Set the dynamic controller namespace and instantiate the dynamic controller
-        $controller =  "\\App\\Controllers\\" . $route['controller'];
+            // Check if the dynamic controller exists
+            if (class_exists($controller)) {
 
-        // Check if the dynamic controller exists
-        if (class_exists($controller)) {
+                // Instantiate the dynamic controller
+                $controller = new $controller;
 
-            // Instantiate the dynamic controller
-            $controller = new $controller;
+                // Check if the method exists
+                if (method_exists($controller, $route['method'])) {
 
-            // Check if the method exists
-            if (method_exists($controller, $route['method'])) {
+                    // Run the dynamic method of the controller with the params
+                    $controller->{$route['method']}($params);
+                } else {
 
-                // Run the dynamic method of the controller with the params
-                $controller->{$route['method']}($params);
+                    //TODO: Error Response message
+                }
             } else {
 
                 //TODO: Error Response message
             }
         } else {
-
-            //TODO: Error Response message
+            (new View())->render("/errors/404.php", $params + ['message' => "Controller File Not Found!"]);
         }
     }
 }

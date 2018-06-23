@@ -1,13 +1,13 @@
-Options +FollowSymLinks
+Options -Multiviews
 
 # Turn on the RewriteEngine
 RewriteEngine On
 
-RewriteBase /litening/public/
+RewriteBase /litening/
 
 #  Conditions
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 #  Rules
-RewriteRule ^ index.php [L]
+RewriteRule ^ public/index.php [L]

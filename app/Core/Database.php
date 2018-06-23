@@ -31,7 +31,7 @@ class Database
     function __construct()
     {
         // Require the database configuration file.
-        require_once rootDir() . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "database.config.php";
+        require_once rootPath() . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "database.config.php";
 
         // Set the db credentials.
         $this->dbCredentials = dbCredentials();

@@ -5,9 +5,26 @@
  * Application name.
  * -----------------
  */
-function appName()
-{
+function appName() {
     return "litening";
+}
+
+/**
+ * ---------------
+ * Root Path.
+ * ---------------
+ */
+function rootPath() {
+    return $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . appName();
+}
+
+/**
+ * ---------------
+ * Root Directory.
+ * ---------------
+ */
+function rootDir() {
+    return DIRECTORY_SEPARATOR . appName();
 }
 
 /**
@@ -15,17 +32,7 @@ function appName()
  * Application's public directory.
  * -------------------------------
  */
-function publicDir()
-{
-    return "/litening/public/";
+function publicDir() {
+    return DIRECTORY_SEPARATOR . "litening" . DIRECTORY_SEPARATOR . "public" . DIRECTORY_SEPARATOR;
 }
 
-/**
- * ---------------
- * Root directory.
- * ---------------
- */
-function rootDir()
-{
-    return $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . appName();
-}

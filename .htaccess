@@ -1,1 +1,11 @@
-Options -Indexes
+Options +FollowSymLinks -MultiViews
+
+DirectoryIndex index.php
+
+# Turn mod_rewrite on
+RewriteEngine On
+
+RewriteBase /
+
+RewriteRule ^(.*)$ /litening/public/$1 [NE]
+

@@ -55,7 +55,7 @@ trait DbHelper
     {
         try {
             // Create a new pdo connection without a database.
-            $pdo = new PDO(
+            $pdo = new \PDO(
                 'mysql:host=' . $this->dbCredentials['DB_HOST'] . ';',
                 $this->dbCredentials['DB_USERNAME'],
                 $this->dbCredentials['DB_PASSWORD']
