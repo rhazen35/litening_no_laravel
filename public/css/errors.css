@@ -1,0 +1,40 @@
+.error-container {
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: flex-start;
+    width:100%;
+}
+
+
+.error-image {
+    clear:both;
+    width:40%;
+}
+
+.error-image img {
+    float:right;
+}
+
+.error-message-container {
+    display:flex;
+    flex-flow:column;
+    justify-content: flex-start;
+    width:60%;
+}
+
+.error-code {
+    margin-top: 10rem;
+    color:red;
+    font-weight:bold;
+    font-size: 300%
+}
+
+.error-title {
+    padding:0.5rem;
+    background: #cdcdcd;
+}
+
+.error-message {
+    padding:0.5rem;
+    background: #f1f1f1;
+}

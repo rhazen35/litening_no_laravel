@@ -19,7 +19,7 @@ class Router
         if (isset($request)) {
 
             // Clean the request by trimming whitespace and filter sanitize the url(request)
-            $cleanRequest = filter_var(ltrim(str_replace("/" . appName(), "", $request), "/"), FILTER_SANITIZE_URL);
+            $cleanRequest = filter_var(rtrim(str_replace("/" . appName() . "/", "", $request), "/"), FILTER_SANITIZE_URL);
 
             // Split the url into parts
             $requestParts = explode("/", $cleanRequest);
@@ -33,9 +33,7 @@ class Router
             unset($requestParts[1]);
 
             // Set the route name
-            $routeName = strlen($controller) == 0 ? "/" : implode("/", [$controller, $method]);
-
-            var_dump($controller, $method, $routeName);
+            $routeName = strlen($controller) === 0 ? "/" : rtrim(implode("/", [$controller, $method]), "/");
 
             // Set matching route to null
             $matchingRoute = null;
@@ -68,7 +66,7 @@ class Router
     function request($route, $params)
     {
         // Create the dynamic file name
-        $fileName = rootDir() . DIRECTORY_SEPARATOR . "app" . DIRECTORY_SEPARATOR . "Controllers"
+        $fileName = rootPath() . DIRECTORY_SEPARATOR . "app" . DIRECTORY_SEPARATOR . "Controllers" . DIRECTORY_SEPARATOR
             . $route['controller'] . '.php';
 
         // Check if the file exists
@@ -100,7 +98,7 @@ class Router
                 //TODO: Error Response message
             }
         } else {
-            (new View())->render("/errors/404.php", $params + ['message' => "Controller File Not Found!"]);
+            (new View())->render(views() . "errors/404.php", $params + ['message' => "Controller File Not Found!"]);
         }
     }
 }

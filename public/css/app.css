@@ -1,0 +1,53 @@
+@import "errors.css";
+
+html, body {
+    margin:0;
+    padding:0;
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+.header {
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.header-item {
+    width: 100%;
+}
+
+.header-title {
+    width:100%;
+    margin-top:2rem;
+    padding:1rem;
+    font-weight:bold;
+    font-size:140%;
+    text-align:center;
+    border-bottom:1px solid #6CB42B;
+}
+
+.header-description {
+    width:100%;
+    padding:1rem;
+    font-size:110%;
+    text-align:center;
+    border-bottom:1px solid #6CB42B;
+}
+
+.footer {
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-item {
+    width: 100%;
+    padding:1rem;
+    background-color: #6CB42B;
+    color: white;
+    text-align: center;
+}

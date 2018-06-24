@@ -16,17 +16,23 @@ function routes()
             'method'     => "index"
         ],
 
-        // 404 Not found route.
         [
-            'route'      => "404",
-            'controller' => "errorController",
-            'method'     => "404"
+            'route'      => "home",
+            'controller' => "HomeController",
+            'method'     => "index"
         ],
 
         [
             'route'      => "home/index",
             'controller' => "HomeController",
             'method'     => "index"
+        ],
+
+        // 404 Not found route.
+        [
+            'route'      => "404",
+            'controller' => "errorController",
+            'method'     => "404"
         ],
 
     ];
