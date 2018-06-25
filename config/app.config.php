@@ -63,6 +63,10 @@ function publicDir() {
     return DIRECTORY_SEPARATOR . "litening" . DIRECTORY_SEPARATOR . "public" . DIRECTORY_SEPARATOR;
 }
 
+function publicRootPath() {
+    return rootPath() . DIRECTORY_SEPARATOR . "public" . DIRECTORY_SEPARATOR;
+}
+
 /**
  * Header File.
  */

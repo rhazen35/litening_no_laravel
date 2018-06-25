@@ -8,7 +8,7 @@
   <meta name="description" content="<?= appDescription(); ?>">
   <meta name="author" content="<?= appAuthor();?>">
 
-  <link rel="stylesheet" href="public/css/app.css">
+  <link rel="stylesheet" href="<?= rootDir(); ?>/public/css/app.css">
 
 </head>
 

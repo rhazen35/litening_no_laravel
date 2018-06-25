@@ -32,7 +32,7 @@ function routes()
         [
             'route'      => "404",
             'controller' => "errorController",
-            'method'     => "404"
+            'method'     => "page404"
         ],
 
     ];

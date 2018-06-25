@@ -50,7 +50,7 @@ class Router
             if (null !== $matchingRoute) {
                 $this->request($matchingRoute, $requestParts);
             } else {
-                $this->request(['controller' => 'errorController', 'method' => '404'], ['type' => "route", 'data' => $requestParts]);
+                $this->request(['route' => "404", 'controller' => 'ErrorController', 'method' => 'page404'], ['type' => "route", 'data' => $requestParts]);
             }
 
         } else {
@@ -98,7 +98,11 @@ class Router
                 //TODO: Error Response message
             }
         } else {
-            (new View())->render(views() . "errors/404.php", $params + ['message' => "Controller File Not Found!"]);
+            (new View())->render(views() . "errors/404.php", $params + [
+                'message'    => "Controller File Not Found!",
+                'controller' => $route['controller'],
+                'method'     => $route['method'],
+                ]);
         }
     }
 }
