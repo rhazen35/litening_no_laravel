@@ -15,7 +15,6 @@ class View {
      * @return void
      */
     function render(string $filename, array $params = []) {
-
         include(views() . "main" . DIRECTORY_SEPARATOR . "header.php");
         include($filename);
         include(views() . "main" . DIRECTORY_SEPARATOR . "footer.php");

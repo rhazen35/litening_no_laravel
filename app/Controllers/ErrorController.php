@@ -5,17 +5,28 @@ Namespace App\Controllers;
 use App\Core\Controller;
 use App\Core\View; 
 
+/**
+ * Error Controller Class.
+ */
 class ErrorController extends Controller {
     
-    function index($params) {
+    /**
+     * Index.
+     *
+     * @param array $params
+     * @return void
+     */
+    function index(array $params) {
 
     }
 
-    function page404($params) {
-        (new View())->render(views() . "errors/404.php", $params + [
-            'message'    => "Controller File Not Found!",
-            'controller' => $params['data']['controller'],
-            'method'     => $params['data']['method'],
-            ]);
+    /**
+     * Page 404.
+     *
+     * @param array $params
+     * @return void
+     */
+    function page404(array $params) {
+        (new View())->render(views() . "errors/404.php", $params);
     }
 }

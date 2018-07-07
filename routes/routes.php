@@ -5,9 +5,12 @@
  * All application routes are specified here.
  * Add a new route array to the routes array.
  * ------------------------------------------
+ * 
+ * Routes function.
+ * 
+ * @return array
  */
-function routes()
-{
+function routes() {
     return [
         // Root route to home.
         [

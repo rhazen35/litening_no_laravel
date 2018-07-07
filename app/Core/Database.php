@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use App\Helpers\Database\LiteDbBuilder;
+use App\Database\LiteDbBuilder;
 use App\Helpers\Database\DbHelper;
 use PDO;
 use PDOException;
@@ -61,6 +61,8 @@ class Database
     }
 
     /**
+     * Connect with PDO.
+     * 
      * @return PDO
      */
     function connectPDO()
@@ -73,7 +75,6 @@ class Database
                  $this->dbCredentials['DB_PASSWORD']
             );
         } catch(PDOException $e) {
-
             print "Error!: " . $e->getMessage() . "<br/>";
             die();
         }

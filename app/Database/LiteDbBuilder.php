@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Helpers\Database;
+namespace App\Database;
 
 use App\Enums\Database\LiteDbEnum;
 
+/**
+ * Lite Database Builder.
+ */
 class LiteDbBuilder
 {
 

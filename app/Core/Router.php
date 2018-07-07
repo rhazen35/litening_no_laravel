@@ -11,12 +11,18 @@ use App\Core\View;
 class Router
 {
     /**
-     * @param $request
+     * Resolve a given request.
+     * 
+     * @param  string $request
+     * @return void
      */
-    function resolve($request)
+    function resolve(string $request)
     {
         // Check if the request is set
         if (isset($request)) {
+
+            // Set the page 404 route array.
+            $page404 = ['route' => "404", 'controller' => 'ErrorController', 'method' => 'page404'];
 
             // Clean the request by trimming whitespace and filter sanitize the url(request)
             $cleanRequest = filter_var(rtrim(str_replace("/" . appName() . "/", "", $request), "/"), FILTER_SANITIZE_URL);
@@ -50,20 +56,37 @@ class Router
             if (null !== $matchingRoute) {
                 $this->request($matchingRoute, $requestParts);
             } else {
-                $this->request(['route' => "404", 'controller' => 'ErrorController', 'method' => 'page404'], ['type' => "route", 'data' => $requestParts]);
+                // Send an error message.
+                $this->request(
+                    $page404,
+                    [
+                        'type'    => "route", 
+                        'data'    => $requestParts,
+                        'message' => "Route does not exists! Please enter a different URL or contact the WebMaster."
+                    ]
+                );
             }
-
         } else {
-
-            //TODO: Error Response message
+            // Send an error message.
+            $this->request(
+                $page404,
+                [
+                    'type'    => "route", 
+                    'data'    => $requestParts,
+                    'message' => "There was a problem finding the source! Please enter a different URL or contact the WebMaster."
+                ]
+            );
         }
     }
 
     /**
-     * @param $route
-     * @param $params
+     * Handle a request.
+     * 
+     * @param  array $route
+     * @param  array $params
+     * @return void
      */
-    function request($route, $params)
+    function request(array $route, array $params)
     {
         // Create the dynamic file name
         $fileName = rootPath() . DIRECTORY_SEPARATOR . "app" . DIRECTORY_SEPARATOR . "Controllers" . DIRECTORY_SEPARATOR
@@ -91,17 +114,23 @@ class Router
                     $controller->{$route['method']}($params);
                 } else {
 
-                    //TODO: Error Response message
+                    // Show the error page with a message.
+                    (new View())->render(views() . "errors/404.php", [
+                        'message' => "Controller Not Found!"
+                        ]);
                 }
             } else {
 
-                //TODO: Error Response message
+                // Show the error page with a message.
+                (new View())->render(views() . "errors/404.php", [
+                    'message' => "Method Not Found!"
+                    ]);
             }
         } else {
-            (new View())->render(views() . "errors/404.php", $params + [
-                'message'    => "Controller File Not Found!",
-                'controller' => $route['controller'],
-                'method'     => $route['method'],
+
+            // Show the error page with a message.
+            (new View())->render(views() . "errors/404.php", [
+                'message' => "Controller File Not Found!"
                 ]);
         }
     }

@@ -8,6 +8,8 @@ namespace App\Core\Contracts;
 interface ControllerInterface
 {
     /**
+     * Index.
+     * 
      * @param $params
      * @return mixed
      */
