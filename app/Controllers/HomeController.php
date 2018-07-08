@@ -16,6 +16,6 @@ class HomeController extends Controller
     {
         echo 'Home View here please!';
 
-        var_dump(new Database());
+        var_dump((new Database())->connectPDO());
     }
 }

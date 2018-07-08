@@ -28,7 +28,7 @@ class Database
     /**
      * Database constructor.
      */
-    function __construct()
+    public function __construct()
     {
         // Require the database configuration file.
         require_once rootPath() . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "database.config.php";
@@ -50,14 +50,15 @@ class Database
             } else {
 
                 // Create the litening database.
-                new LiteDbBuilder($pdo);
+                $databaseBuild = (new LiteDbBuilder())->createDatabase($pdo);
+                if (true === $databaseBuild) {
+                    (new LiteDbBuilder())->createTables($this->connectPDO());
+                }
             }
         } else {
             print "Error!: Could not connect to the database server!";
             die();
         }
-        // Unset the db credentials.
-        unset($this->dbCredentials);
     }
 
     /**
@@ -65,7 +66,7 @@ class Database
      * 
      * @return PDO
      */
-    function connectPDO()
+    public function connectPDO()
     {
         try {
              return new PDO(
@@ -78,5 +79,7 @@ class Database
             print "Error!: " . $e->getMessage() . "<br/>";
             die();
         }
+
+        unset($this->dbCredentials);
     }
 }
