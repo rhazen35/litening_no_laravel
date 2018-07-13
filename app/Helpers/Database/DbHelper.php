@@ -63,10 +63,10 @@ trait DbHelper
 
             // Return pdo if the connection succeeded.
             return $pdo;
-        } catch(PDOException $e) {
+        } catch(\PDOException $e) {
 
             // Return false if the connection failed.
-            return false;
+            echo 'Connection failed: ' . $e->getMessage();
         }
     }
 }

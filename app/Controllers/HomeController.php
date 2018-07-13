@@ -14,8 +14,13 @@ class HomeController extends Controller
 
     function index($params)
     {
-        echo 'Home View here please!';
+        $connection = (new Database())->connectPDO();
+        $loggedIn   = isset($_SESSION['userId']) ? "true" : false;
 
-        var_dump((new Database())->connectPDO());
+        if (true === $loggedIn) {
+
+        } else {
+            (new View())->render(views() . "login/index.php", $params);
+        }
     }
 }

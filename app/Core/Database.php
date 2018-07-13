@@ -48,9 +48,9 @@ class Database
                 // Set the connection.
                 $this->connection = $this->connectPDO();
             } else {
-
                 // Create the litening database.
                 $databaseBuild = (new LiteDbBuilder())->createDatabase($pdo);
+                // Create Tables if the database has been build.
                 if (true === $databaseBuild) {
                     (new LiteDbBuilder())->createTables($this->connectPDO());
                 }
