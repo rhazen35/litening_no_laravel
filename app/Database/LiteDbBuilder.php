@@ -16,7 +16,7 @@ class LiteDbBuilder
      * Create the Litening database.
      *
      * @param object $pdo
-     * @return void
+     * @return bool
      */
     public function createDatabase($pdo)
     {
@@ -31,8 +31,15 @@ class LiteDbBuilder
         }
     }
 
+    /**
+     * Create Tables
+     *
+     * @param object $pdo
+     * @return void
+     */
     public function createTables($pdo) {
-        $query = (new LiteDbSchema())->create("users", [
+        // User Table
+        $queryArray[] = (new LiteDbSchema())->create("users", [
             ['column' => "id", 'type' => 'increments'],
             ['column' => "name", 'type' => 'string'],
             ['column' => "email", 'type' => 'string'],
@@ -43,8 +50,26 @@ class LiteDbBuilder
             ['column' => "updated_by", 'type' => 'integer']
         ]);
 
+        // User Login Table
+        $queryArray[] = (new LiteDbSchema())->create("user_login", [
+            ['column' => "id", 'type' => 'increments'],
+            ['column' => "user_id", 'type' => 'integer'],
+            ['column' => "first_login", 'type' => 'datetime'],
+            ['column' => "current_login", 'type' => 'datetime'],
+            ['column' => "last_login", 'type' => 'datetime'],
+            ['column' => "deleted", 'type' => 'integer'],
+            ['column' => "created_at", 'type' => 'datetime'],
+            ['column' => "created_by", 'type' => 'integer'],
+            ['column' => "updated_at", 'type' => 'datetime'],
+            ['column' => "updated_by", 'type' => 'integer']
+        ]);
+
+        // Connect to the database.
         $pdo  = (new Database())->connectPDO(); 
-        $stmt = $pdo->prepare($query);
-        $stmt->execute();
+        // Loop through the query array and execute each query.
+        foreach ($queryArray as $query) {
+            $stmt = $pdo->prepare($query);
+            $stmt->execute();
+        }
     }
 }

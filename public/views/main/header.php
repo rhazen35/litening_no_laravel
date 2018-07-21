@@ -9,6 +9,7 @@
   <meta name="author" content="<?= appAuthor();?>">
 
   <link rel="stylesheet" href="<?= rootDir(); ?>/public/css/app.css">
+  <link rel="stylesheet" href="<?= rootDir(); ?>/public/css/all.css">
 
 </head>
 
