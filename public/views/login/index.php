@@ -13,7 +13,7 @@
                 </div>
                 <div class="login-form-item">
                     <div class="login-form-links">
-                        <a href="" title="Register now!">Not registered?</a>
+                        <a href="/litening/register" title="Register now!">Not registered?</a>
                         <a href="" title="Reset Password">Password forgotten?</a>
                     </div>    
                     <input type="submit" name="submitLogin" value="Login" title="Click to login.">

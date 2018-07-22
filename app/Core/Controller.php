@@ -11,8 +11,8 @@ use App\Core\Contracts\ControllerInterface;
 abstract class Controller implements ControllerInterface
 {
     /**
-     * @param $params
+     * @param array $params
      * @return mixed
      */
-    abstract function index($params);
+    abstract function index(array $params);
 }

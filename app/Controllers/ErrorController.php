@@ -14,7 +14,7 @@ class ErrorController extends Controller {
      * Index.
      *
      * @param array $params
-     * @return void
+     * @return mixed
      */
     function index(array $params) {
 

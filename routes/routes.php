@@ -38,5 +38,13 @@ function routes() {
             'method'     => "page404"
         ],
 
+        // Register / Login routes.
+
+        [
+            'route'      => "register",
+            'controller' => "RegisterController",
+            'method'     => "index"
+        ],
+
     ];
 }

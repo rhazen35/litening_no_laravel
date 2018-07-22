@@ -13,7 +13,7 @@ use App\Core\View;
 class HomeController extends Controller
 {
 
-    function index($params)
+    function index(array $params)
     {
         $connection = (new Database())->connectPDO();
         $loggedIn   = isset($_SESSION['userId']) ? "true" : false;

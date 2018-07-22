@@ -10,8 +10,8 @@ interface ControllerInterface
     /**
      * Index.
      * 
-     * @param $params
+     * @param array $params
      * @return mixed
      */
-    function index($params);
+    function index(array $params);
 }
