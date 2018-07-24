@@ -35,7 +35,6 @@
 .login-form-item {
     width:50%;
     margin-top:0.5rem;
-    overflow:hidden;
 }
 
 .login-form-item label {
@@ -43,7 +42,7 @@
 }
 
 .login-form-item input {
-    width:95%;
+    width:90%;
     margin-top:0.15rem;
     margin-left:0.2rem;
     margin-bottom:0.5rem;

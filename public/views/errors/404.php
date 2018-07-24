@@ -4,5 +4,6 @@
         <div class="error-code">404</div>
         <div class="error-title">Yikes! We are truly sorry, the page that was requested has not been found...</div>
         <div class="error-message">Message: <?= $params['message'] ?></div>
+        <div class="error-link"><a href="/litening/home" id="error-404-history-back">Back to the Homepage</a></div>
     </div>
 </div>

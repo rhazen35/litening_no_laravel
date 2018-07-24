@@ -43,10 +43,23 @@
     background: #f1f1f1;
 }
 
-.error-data {
-    width:90%;
-    margin: 0 auto;
-    margin-top:1rem;
-    padding:1rem;
-    border-top:1px solid #6CB42B;
+.error-link {
+    padding:0.5rem;
+    padding-left:0;
+    background: #f1f1f1;
+    border-top:1px solid #cdcdcd;
+}
+
+.error-link a {
+    padding: 0.5rem;
+    color: #ffffff;
+    text-decoration:none;
+    background: #6CB42B;
+    border:1px solid #6CB42B;
+}
+
+.error-link a:hover {
+    color: #6CB42B;
+    background: #ffffff;
+    border:1px solid #6CB42B;
 }
