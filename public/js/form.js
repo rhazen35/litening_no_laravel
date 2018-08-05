@@ -28,7 +28,10 @@ window.onload = function () {
             data: {
                 value: '',
                 data: {
-                    name: ""
+                    name: "",
+                    email: "",
+                    password: "",
+                    passwordRepeat: ""
                 }
             },
             methods: {

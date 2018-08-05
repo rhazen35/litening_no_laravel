@@ -14,19 +14,19 @@
                     Email *
                     <span></span>
                 </label>
-                <input @focusout="validate(this)" v-model="value" type="email" name="email" value="" placeholder=" Email" title="Please enter your email address.">
+                <input @focusout="validate(this)" v-model="data.email" type="email" name="email" value="" placeholder=" Email" title="Please enter your email address.">
             </div>
             <div class="register-form-item" id="password">
                 <label for="password">
                     Password*
                 </label>
-                <input @focusout="validate(this)" v-model="value" type="password" name="password" value="" placeholder=" Password" title="Please enter your password.">
+                <input @focusout="validate(this)" v-model="data.password" type="password" name="password" value="" placeholder=" Password" title="Please enter your password.">
             </div>
             <div class="register-form-item" id="passwordRepeat">
                 <label for="passwordRepeat">
                     Password repeat*
                 </label>
-                <input @focusout="validate(this)" v-model="value" type="password" name="password-repeat" value="" placeholder=" Password Repeat" title="Please repeat your password.">
+                <input @focusout="validate(this)" v-model="data.passwordRepeat" type="password" name="password-repeat" value="" placeholder=" Password Repeat" title="Please repeat your password.">
             </div>
             <div class="register-form-item" id="submit">
                 <input @click="submit(this)" type="submit" name="submitRegister" value="Register" title="Click to register.">
